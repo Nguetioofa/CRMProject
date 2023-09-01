@@ -1,0 +1,34 @@
+﻿@model CallViewsModel
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>@SharedLocalizer["Delete"]</h1>
+
+<h3>@SharedLocalizer["Delete.Confirme"]</h3>
+<div>
+    <h4>Call</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">@SharedLocalizer["CallNo"]</dt>
+        <dd class="col-sm-9">@Model.CallNo</dd>
+
+        <dt class="col-sm-3">@SharedLocalizer["Customer.Name"]</dt>
+        <dd class="col-sm-9"><a asp-action="Details" asp-controller="Customer" asp-route-id="@Model.CustomerNo">  @Model.customer.CustomerName @Model.customer.CustomerSurname </a></dd>
+
+        <dt class="col-sm-3">@SharedLocalizer["Call.DateofCall"]</dt>
+        <dd class="col-sm-9">@Model.DateTimeofCall</dd>
+
+        <dt class="col-sm-3">@SharedLocalizer["Call.Subject"]</dt>
+        <dd class="col-sm-9">@Model.Subject</dd>
+
+        <dt class="col-sm-3">@SharedLocalizer["Call.Description"]</dt>
+        <dd class="col-sm-9">@Model.Description</dd>
+
+        <dt class="col-sm-3">@SharedLocalizer["RegistrationDate"]</dt>
+        <dd class="col-sm-9">@Model.RegistrationDate</dd>
+    </dl>
+
+    <a asp-route-id="@Model.CallNo" asp-action="Deleted" class="btn btn-danger"> @SharedLocalizer["Delete"] </a>|
+    <a asp-action="Index">@SharedLocalizer["BacktoList"]</a>
+</div>

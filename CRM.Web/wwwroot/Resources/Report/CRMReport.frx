@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="09/01/2023 13:51:37" ReportInfo.Modified="09/01/2023 16:31:57" ReportInfo.CreatorVersion="2023.2.0.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  { 
+  }
+}                
+</ScriptText>
+  <Dictionary>
+    <BusinessObjectDataSource Name="CustomerList" ReferenceName="listCustomersRef" DataType="System.Int32" Enabled="true">
+      <Column Name="CustomerNo" DataType="System.Int32"/>
+      <Column Name="CustomerName" DataType="System.String"/>
+      <Column Name="CustomerSurname" DataType="System.String"/>
+      <Column Name="Address" DataType="System.String"/>
+      <Column Name="PostCode" DataType="System.String"/>
+      <Column Name="Country" DataType="System.String"/>
+      <Column Name="DateofBirth" DataType="System.DateTime"/>
+      <Column Name="RegistrationDate" DataType="System.DateTime"/>
+    </BusinessObjectDataSource>
+    <BusinessObjectDataSource Name="CallList" ReferenceName="listCallsRef" DataType="System.Int32" Enabled="true">
+      <Column Name="CallNo" DataType="System.Int32"/>
+      <Column Name="CompleteName" DataType="System.String"/>
+      <Column Name="DateTimeofCall" DataType="System.DateTime"/>
+      <Column Name="Subject" DataType="System.String"/>
+      <Column Name="Description" DataType="System.String"/>
+      <Column Name="RegistrationDate" DataType="System.DateTime"/>
+    </BusinessObjectDataSource>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="56.7">
+      <TextObject Name="Text1" Left="18.9" Top="9.45" Width="689.85" Height="37.8" Text=" Customer Relationship Management Report Customer" Font="Arial, 18pt, style=Bold, Underline" TextFill.Color="MidnightBlue"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="60.7" Width="718.2" Height="28.35">
+      <TextObject Name="Text2" Width="56.7" Height="28.35" Border.Lines="All" Text="No" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text3" Left="56.7" Width="94.5" Height="28.35" Border.Lines="All" Text="Name" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text4" Left="151.2" Width="94.5" Height="28.35" Border.Lines="All" Text="Surname" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text5" Left="245.7" Width="113.4" Height="28.35" Border.Lines="All" Text="Address" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text6" Left="359.1" Width="75.6" Height="28.35" Border.Lines="All" Text="Post Code" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text7" Left="434.7" Width="94.5" Height="28.35" Border.Lines="All" Text="Country" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text8" Left="529.2" Width="94.5" Height="28.35" Border.Lines="All" Text="Date of Birth" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text9" Left="623.7" Width="94.5" Height="28.35" Border.Lines="All" Text="Registration Date" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt" TextFill.Color="0, 0, 0"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="93.05" Width="718.2" Height="47.25" DataSource="CustomerList">
+      <TextObject Name="Text33" Width="56.7" Height="47.25" Border.Lines="All" Text="[CustomerList.CustomerNo]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text34" Left="56.7" Width="94.5" Height="47.25" Border.Lines="All" Text="[CustomerList.CustomerName]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text35" Left="151.2" Width="94.5" Height="47.25" Border.Lines="All" Text="[CustomerList.CustomerSurname]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text36" Left="245.7" Width="113.4" Height="47.25" Border.Lines="All" Text="[CustomerList.Address]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text37" Left="359.1" Width="75.6" Height="47.25" Border.Lines="All" Text="[CustomerList.PostCode]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text38" Left="434.7" Width="94.5" Height="47.25" Border.Lines="All" Text="[CustomerList.Country]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text39" Left="529.2" Width="94.5" Height="47.25" Border.Lines="All" Text="[CustomerList.DateofBirth]" Format="Date" Format.Format="d" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text40" Left="623.7" Width="94.5" Height="47.25" Border.Lines="All" Text="[CustomerList.RegistrationDate]" Format="Date" Format.Format="d" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt" TextFill.Color="0, 0, 0"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="144.3" Width="718.2" Height="18.9">
+      <TextObject Name="Text32" Left="623.7" Width="94.5" Height="18.9" Text="[Page#]" HorzAlign="Center" Font="Arial, 10pt"/>
+    </PageFooterBand>
+  </ReportPage>
+  <ReportPage Name="Page2" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle2" Width="718.2" Height="56.7">
+      <TextObject Name="Text18" Left="47.25" Top="9.45" Width="689.85" Height="37.8" Text=" Customer Relationship Management Report Call" Font="Arial, 18pt, style=Bold, Underline" TextFill.Color="MidnightBlue"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader2" Top="60.7" Width="718.2" Height="37.8">
+      <TextObject Name="Text20" Top="9.45" Width="85.05" Height="28.35" Border.Lines="All" Text="No" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text22" Left="85.05" Top="9.45" Width="141.75" Height="28.35" Border.Lines="All" Text="Complete Name" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text24" Left="226.8" Top="9.45" Width="113.4" Height="28.35" Border.Lines="All" Text="Date Time of Call" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text26" Left="340.2" Top="9.45" Width="113.4" Height="28.35" Border.Lines="All" Text="Subject" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text28" Left="453.6" Top="9.45" Width="151.2" Height="28.35" Border.Lines="All" Text="Description" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text30" Left="604.8" Top="9.45" Width="113.4" Height="28.35" Border.Lines="All" Text="Registration Date" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+    </PageHeaderBand>
+    <DataBand Name="Data2" Top="102.5" Width="718.2" Height="47.25" DataSource="CallList">
+      <TextObject Name="Text19" Width="85.05" Height="47.25" Border.Lines="All" Text="[CallList.CallNo]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text21" Left="85.05" Width="141.75" Height="47.25" Border.Lines="All" Text="[CallList.CompleteName]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text23" Left="226.8" Width="113.4" Height="47.25" Border.Lines="All" Text="[CallList.DateTimeofCall]" Format="Date" Format.Format="d" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text25" Left="340.2" Width="113.4" Height="47.25" Border.Lines="All" Text="[CallList.Subject]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text27" Left="453.6" Width="151.2" Height="47.25" Border.Lines="All" Text="[CallList.Description]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text29" Left="604.8" Width="113.4" Height="47.25" Border.Lines="All" Text="[CallList.RegistrationDate]" Format="Date" Format.Format="d" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter2" Top="153.75" Width="718.2" Height="18.9">
+      <TextObject Name="Text31" Left="623.7" Width="94.5" Height="18.9" Text="[Page#]" HorzAlign="Center" Font="Arial, 10pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

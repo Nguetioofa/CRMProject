@@ -1,0 +1,74 @@
+﻿@model PagedList<CallViewsModel>
+@inject IGenericRepository<Customer> _customerRepository
+@{
+    ViewData["Title"] = "Liste";
+}
+@{
+    var customers = await _customerRepository.GetAll();
+}
+
+<div class="container">
+    <h2>@SharedLocalizer["Call.Management"]</h2>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <a asp-action="Create" class="btn btn-primary">@SharedLocalizer["Call.Add"]</a>
+        </div>
+    </div>
+
+    <select class="form-control form-select mb-3" onchange="window.location.href=this.value">
+        <option value="">@SharedLocalizer["Selectcustomer"]</option>
+        @foreach (var customer in customers.Resultats)
+        {
+            <option value="@Url.Action("Index", "Call", new { customerNo = customer.CustomerNo })">
+                @customer.CustomerName @customer.CustomerSurname
+            </option>
+        }
+    </select>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>@SharedLocalizer["Call.DateofCall"]</th>
+                        <th>@SharedLocalizer["Call.Subject"]</th>
+                        <th>@SharedLocalizer["Call.Description"]</th>
+                        <th>@SharedLocalizer["Customer.CompleteName"]</th>
+                        <th>@SharedLocalizer["Actions"]</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var call in Model.ListElements)
+                    {
+                        <tr>
+                            <td>@call.CallNo</td>
+                            <td>@call.DateTimeofCall.ToString("D")</td>
+                            <td>@call.Subject</td>
+                            <td>@call.Description</td>
+                            <td> <a> @call.customer.CustomerSurname  @call.customer.CustomerName  </a> </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@call.CallNo" class="btn btn-info btn-sm">@SharedLocalizer["Edit"]</a>
+                                <a asp-action="Details" asp-route-id="@call.CallNo" class="btn btn-info btn-sm">@SharedLocalizer["Details"]</a>
+                                <a asp-action="Delete" asp-route-id="@call.CallNo" class="btn btn-danger btn-sm">@SharedLocalizer["Delete"]</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    @for (int i = 1; i <= Model.pageSize; i++)
+                    {
+                        <li class="page-item @(Model.pageIndex == i ? "active" : "")"><a class="page-link" asp-route-page="@i">@i</a></li>
+                    }
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

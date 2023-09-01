@@ -1,0 +1,76 @@
+﻿@model ReportIndexModel;
+
+<div class="row mb-3">
+    <div class="col-md-6">
+        <a asp-action="Print" class="btn btn-primary">@SharedLocalizer["Printreport"]</a>
+    </div>
+</div>
+
+
+<h2 class="mb-3">@SharedLocalizer["Call"]</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>@SharedLocalizer["Call.DateofCall"]</th>
+                    <th>@SharedLocalizer["Call.Subject"]</th>
+                    <th>@SharedLocalizer["Call.Description"]</th>
+                    <th>@SharedLocalizer["Customer.CompleteName"]</th>
+                    <th>@SharedLocalizer["RegistrationDate"]</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var call in Model.listCalls)
+                {
+                    <tr>
+                        <td>@call.CallNo</td>
+                        <td>@call.DateTimeofCall.ToString("D")</td>
+                        <td>@call.Subject</td>
+                        <td>@call.Description</td>
+                        <td>@call.CompleteName </td>
+                        <td>@call.RegistrationDate.ToString("D")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<h2 class="mb-3">@SharedLocalizer["Customer"]</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>@SharedLocalizer["Customer.Name"]</th>
+                    <th>@SharedLocalizer["Customer.Surname"]</th>
+                    <th>@SharedLocalizer["Address"]</th>
+                    <th>@SharedLocalizer["Customer.PostCode"]</th>
+                    <th>@SharedLocalizer["Country"]</th>
+                    <th>@SharedLocalizer["Customer.DateofBirth"]</th>
+                    <th>@SharedLocalizer["RegistrationDate"]</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var customer in Model.listCustomers)
+                {
+                    <tr>
+                        <td>@customer.CustomerName</td>
+                        <td>@customer.CustomerSurname</td>
+                        <td>@customer.Address</td>
+                        <td>@customer.PostCode</td>
+                        <td>@customer.Country</td>
+                        <td>@customer.DateofBirth.ToShortDateString()</td>
+                        <td>@customer.RegistrationDate.ToString("D")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

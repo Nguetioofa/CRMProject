@@ -1,0 +1,38 @@
+﻿@model LoginModel
+
+@{
+   Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@SharedLocalizer["Connection"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/Login.css" />
+
+</head>
+<body>
+    <div class="login-container">
+        <h2 class="text-center">@SharedLocalizer["Connection"]</h2>
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="alert alert-danger mx-auto">@ViewBag.ErrorMessage</div>
+        }
+        <form method="post" asp-action="Login" asp-controller="Employee">
+            <div class="mb-3">
+                <label for="Email" class="form-label">@SharedLocalizer["Emailaddress"]</label>
+                <input asp-for="Email" type="email" class="form-control" id="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="Password" class="form-label">@SharedLocalizer["Password"]</label>
+                <input asp-for="Password" type="password" class="form-control" id="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">@SharedLocalizer["Signin"]</button>
+        </form>
+    </div>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

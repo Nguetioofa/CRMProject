@@ -1,0 +1,62 @@
+﻿@model CRM.Web.Models.CustomerViewsModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<h4>Customer</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+            <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @if (ViewBag.ErrorMessage != null)
+            {
+                <div class="alert alert-danger mx-auto">@ViewBag.ErrorMessage</div>
+            }
+            <div class="form-group">
+                <input type="hidden" asp-for="CustomerNo" class="form-control" />
+                <span asp-validation-for="CustomerNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="CustomerName" class="control-label">@SharedLocalizer["Customer.Name"]</label>
+                <input asp-for="CustomerName" class="form-control" />
+                <span asp-validation-for="CustomerName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="CustomerSurname" class="control-label">@SharedLocalizer["Customer.Surname"]</label>
+                <input asp-for="CustomerSurname" class="form-control" />
+                <span asp-validation-for="CustomerSurname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="Address" class="control-label">@SharedLocalizer["Address"]</label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="PostCode" class="control-label">@SharedLocalizer["Customer.PostCode"]</label>
+                <input asp-for="PostCode" class="form-control" />
+                <span asp-validation-for="PostCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="Country" class="control-label">@SharedLocalizer["Country"]</label>
+                <input asp-for="Country" class="form-control" />
+                <span asp-validation-for="Country" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="DateofBirth" class="control-label">@SharedLocalizer["Customer.DateofBirth"]</label>
+                <input asp-for="DateofBirth" class="form-control" />
+                <span asp-validation-for="DateofBirth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value='@SharedLocalizer["Country"]' class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@SharedLocalizer["BacktoList"]</a>
+</div>
+

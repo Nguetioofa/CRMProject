@@ -1,0 +1,35 @@
+﻿@model CallViewsModel
+
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="container">
+    <h2>@SharedLocalizer["Call.Details"]</h2>
+
+    <dl class="row">
+        <dt class="col-sm-3">@SharedLocalizer["CallNo"]</dt>
+        <dd class="col-sm-9">@Model.CallNo</dd>
+
+        <dt class="col-sm-3">@SharedLocalizer["Customer.Name"]</dt>
+        <dd class="col-sm-9"><a asp-action="Details" asp-controller="Customer" asp-route-id="@Model.CustomerNo">  @Model.customer.CustomerName @Model.customer.CustomerSurname </a></dd>
+
+        <dt class="col-sm-3">@SharedLocalizer["Call.DateofCall"]</dt>
+        <dd class="col-sm-9">@Model.DateTimeofCall</dd>
+
+        <dt class="col-sm-3">@SharedLocalizer["Call.Subject"]</dt>
+        <dd class="col-sm-9">@Model.Subject</dd>
+
+        <dt class="col-sm-3">@SharedLocalizer["Call.Description"]</dt>
+        <dd class="col-sm-9">@Model.Description</dd>
+
+        <dt class="col-sm-3">@SharedLocalizer["RegistrationDate"]</dt>
+        <dd class="col-sm-9">@Model.RegistrationDate</dd>
+    </dl>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <a asp-action="Edit" asp-route-id="@Model.CallNo" class="btn btn-primary">@SharedLocalizer["Edit"]</a>
+        <a asp-action="Delete" asp-route-id="@Model.CallNo" class="btn btn-danger">@SharedLocalizer["Delete"]</a>
+    </div>
+</div>

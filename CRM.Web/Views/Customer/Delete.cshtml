@@ -1,0 +1,43 @@
+﻿@model CRM.Web.Models.Customer
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>@SharedLocalizer["Customer"]</h1>
+
+<h3>@SharedLocalizer["Delete.Confirme"]</h3>
+<div>
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger mx-auto">@ViewBag.ErrorMessage</div>
+    }    <div class="row">
+        <div class="col-md-6">
+            <dl class="row">
+                <dt class="col-sm-4">@SharedLocalizer["Customer.Name"]</dt>
+                <dd class="col-sm-8">@Model.CustomerName</dd>
+
+                <dt class="col-sm-4">@SharedLocalizer["Customer.Surname"]</dt>
+                <dd class="col-sm-8">@Model.CustomerSurname</dd>
+
+                <dt class="col-sm-4">@SharedLocalizer["Address"]</dt>
+                <dd class="col-sm-8">@Model.Address</dd>
+
+                <dt class="col-sm-4">@SharedLocalizer["Customer.PostCode"]</dt>
+                <dd class="col-sm-8">@Model.PostCode</dd>
+
+                <dt class="col-sm-4">@SharedLocalizer["Country"]</dt>
+                <dd class="col-sm-8">@Model.Country</dd>
+
+                <dt class="col-sm-4">@SharedLocalizer["Customer.DateofBirth"]</dt>
+                <dd class="col-sm-8">@Model.DateofBirth.ToShortDateString()</dd>
+
+                <dt class="col-sm-4">@SharedLocalizer["RegistrationDate"]</dt>
+                <dd class="col-sm-8">@Model.RegistrationDate.ToString("D")</dd>
+            </dl>
+        </div>
+    </div>
+
+    <a asp-route-id="@Model.CustomerNo" asp-action="Deleted" class="btn btn-danger"> @SharedLocalizer["Delete"] </a>|
+    <a asp-action="Index">@SharedLocalizer["BacktoList"]</a>
+</div>

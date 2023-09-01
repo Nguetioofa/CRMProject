@@ -1,0 +1,57 @@
+﻿@model CRM.Web.Models.Call
+@inject IGenericRepository<Customer> _customerRepository
+
+@{
+    ViewData["Title"] = @SharedLocalizer["Edit"];
+}
+
+@{
+    var customer = await _customerRepository.GetAll();
+}
+
+<h1>@SharedLocalizer["Edit"]</h1>
+
+<h4>@SharedLocalizer["Call"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="alert alert-danger mx-auto">@ViewBag.ErrorMessage</div>
+        }
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input type="hidden" asp-for="CallNo" class="form-control" />
+                <span asp-validation-for="CallNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="CustomerNo" class="control-label">@SharedLocalizer["Customer.Name"]</label>
+                <select asp-for="CustomerNo" asp-items="@customer.Resultats.Select(c => new SelectListItem { Value = c.CustomerNo.ToString(), Text = c.CustomerName + " " + c.CustomerSurname })" class="form-control form-select"></select>
+                <span asp-validation-for="CustomerNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="DateTimeofCall" class="control-label">@SharedLocalizer["Call.DateofCall"]</label>
+                <input asp-for="DateTimeofCall" class="form-control" />
+                <span asp-validation-for="DateTimeofCall" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="Subject" class="control-label">@SharedLocalizer["Call.Subject"]</label>
+                <input asp-for="Subject" class="form-control" />
+                <span asp-validation-for="Subject" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="Description" class="control-label">@SharedLocalizer["Call.Description"]</label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Edit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@SharedLocalizer["BacktoList"]</a>
+</div>
